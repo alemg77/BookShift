@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "205670788322",
+    "project_id": "bookshift-cdbdc",
+    "storage_bucket": "bookshift-cdbdc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205670788322:android:dca934afd17cf8d5dc82bb",
+        "android_client_info": {
+          "package_name": "com.a6.bookshift"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205670788322-8dc20c75pq27ak48e9h435q6pd40bfao.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.a6.bookshift",
+            "certificate_hash": "05c676398281adc996b3d737e8ba4ccfec9efc9a"
+          }
+        },
+        {
+          "client_id": "205670788322-j7k3o611dkmdsn49gmufqb2r0o3vplr4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_jT3PQlWZJHYyEwLd9jY5mzmDPid7QPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205670788322-j7k3o611dkmdsn49gmufqb2r0o3vplr4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
