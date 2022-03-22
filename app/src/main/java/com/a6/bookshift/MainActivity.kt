@@ -25,9 +25,6 @@ import com.google.firebase.analytics.FirebaseAnalytics
 
 class MainActivity : ComponentActivity() {
 
-    private lateinit var oneTapClient: SignInClient
-    private lateinit var signInRequest: BeginSignInRequest
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,50 +34,6 @@ class MainActivity : ComponentActivity() {
         val bundle = Bundle()
         bundle.putString("message", " Integracion de Firebase completa")
         analytics.logEvent("Start_app", bundle)
-
-        oneTapClient = Identity.getSignInClient(this)
-        signInRequest = BeginSignInRequest.builder()
-            .setPasswordRequestOptions(
-                BeginSignInRequest.PasswordRequestOptions.builder()
-                    .setSupported(true)
-                    .build()
-            )
-            .setGoogleIdTokenRequestOptions(
-                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                    .setSupported(true)
-                    .setServerClientId(getString(R.string.default_web_client_id))
-                    .setFilterByAuthorizedAccounts(false)
-                    .build()
-            )
-            .setAutoSelectEnabled(true)
-            .build()
-
-        val googleLoginIntentResultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
-                if (it != null) {
-                    val credential = oneTapClient.getSignInCredentialFromIntent(it.data)
-                    val idToken = credential.googleIdToken
-                    val username = credential.id
-                    val displayName = credential.displayName
-                    Log.d(TAG, "Logeado con google: nombre=$displayName mail=$username")
-                } else {
-                    Log.e(TAG, "Error no contemplado en googleLoginIntentResultLauncher")
-                }
-            }
-
-        oneTapClient.beginSignIn(signInRequest)
-            .addOnSuccessListener(this) { result ->
-                try {
-                    googleLoginIntentResultLauncher.launch(
-                        IntentSenderRequest.Builder(result.pendingIntent.intentSender).build()
-                    )
-                } catch (e: IntentSender.SendIntentException) {
-                    Log.e(TAG, "Couldn't start One Tap UI: ${e.localizedMessage}")
-                }
-            }
-            .addOnFailureListener(this) { e ->
-                Log.d(TAG, e.localizedMessage)
-            }
 
         setContent {
             BookShiftTheme {
