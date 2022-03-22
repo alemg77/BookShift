@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BookShift</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>

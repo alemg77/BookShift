@@ -7,14 +7,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.a6.bookshift.ui.theme.BookShiftTheme
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
@@ -62,8 +63,7 @@ class MainActivity : ComponentActivity() {
                     val username = credential.id
                     val displayName = credential.displayName
                     Log.d(TAG, "Logeado con google: nombre=$displayName mail=$username")
-                }
-                else {
+                } else {
                     Log.e(TAG, "Error no contemplado en googleLoginIntentResultLauncher")
                 }
             }
@@ -89,7 +89,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    DefaultPreview()
                 }
             }
         }
@@ -107,12 +107,26 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 
-@Preview(showBackground = true)
+@Preview(
+    showBackground = true,
+    name = "123",
+    widthDp = 400,
+    heightDp = 600
+)
 @Composable
 fun DefaultPreview() {
     BookShiftTheme {
-        Column {
-            Greeting(name = "Hola mundo")
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceAround
+        ) {
+            Text(
+                text = "Hola mundo!",
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(horizontal = 16.dp, vertical = 12.dp)
+                ,
+            )
             Greeting("Android")
         }
     }
