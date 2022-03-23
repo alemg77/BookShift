@@ -12,6 +12,7 @@ import java.util.*
 class ChooseDayActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_day)
 
@@ -28,10 +29,17 @@ class ChooseDayActivity : AppCompatActivity() {
 
         val datePickerDialog = DatePickerDialog(
             this,
-            android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+            android.R.style.Theme_DeviceDefault_Dialog,
             mDateSetListener,
             year, month, day
         )
+
+        val now = System.currentTimeMillis()
+        val min = now + (1000*60*60*24*1)
+        val max = now + (1000*60*60*24*20)
+
+        datePickerDialog.datePicker.minDate = min
+        datePickerDialog.datePicker.maxDate = max
 
         datePickerDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         datePickerDialog.show()
