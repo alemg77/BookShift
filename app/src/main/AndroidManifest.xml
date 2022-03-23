@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookShift">
         <activity
-            android:name=".ChooseDayActivity"
+            android:name=".chooseday.ChooseDayActivity"
             android:theme="@style/Theme.AppCompat.Light"
             android:exported="false" />
         <activity
