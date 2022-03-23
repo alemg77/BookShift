@@ -35,11 +35,11 @@ class LoginActivity : ComponentActivity() {
         registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
             if (it != null) {
                 val credential = oneTapClient.getSignInCredentialFromIntent(it.data)
-                val idToken = credential.googleIdToken
+                //val idToken = credential.googleIdToken
                 val username = credential.id
                 val displayName = credential.displayName
                 Log.d(MainActivity.TAG, "Logeado con google: nombre=$displayName mail=$username")
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, ChooseDayActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {
@@ -60,7 +60,7 @@ class LoginActivity : ComponentActivity() {
             .setGoogleIdTokenRequestOptions(
                 BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                     .setSupported(true)
-                    .setServerClientId(getString(R.string.default_web_client_id))
+                    .setServerClientId(getString(R.string.default_web_client_id2))
                     .setFilterByAuthorizedAccounts(false)
                     .build()
             )
@@ -93,7 +93,7 @@ class LoginActivity : ComponentActivity() {
                 }
             }
             .addOnFailureListener(this) { e ->
-                Log.d(MainActivity.TAG, e.localizedMessage)
+                Log.d(MainActivity.TAG, e.localizedMessage.toString())
             }
     }
 
@@ -106,7 +106,7 @@ class LoginActivity : ComponentActivity() {
     )
     @Composable
     fun DefaultPreview2() {
-        val context = LocalContext.current
+        // val context = LocalContext.current
         BookShiftTheme {
             Column() {
                 Button(
